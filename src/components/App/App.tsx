@@ -9,7 +9,7 @@ export const App: React.ElementType = () => {
   return (
     <div className={styles.app} data-testid='app'>
       <Provider store={store}>
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename={window.location.pathname || ''}>
           <Routes>
             <Route path={RECIPE_BOARD_ROUTE} element={<HomePage />} />
             <Route path={ADD_RECIPE_ROUTE} element={<AddRecipePage />} />
