@@ -17,7 +17,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { Category, Meal } from '../../utils/types';
 import { SelectChangeEvent } from '@mui/material';
 import { RecipeDrawer } from '../../components/RecipeDrawer';
-import { filterCategory } from '../../store/recipes/reducer';
+import { filterCategory, resetRecipes } from '../../store/recipes/reducer';
 
 export interface HomePageState {
   search: string;
@@ -70,6 +70,7 @@ export const HomePage: React.ElementType = () => {
     setState({
       ...state,
       currentCategories,
+      search: '',
     });
   };
 
@@ -80,7 +81,10 @@ export const HomePage: React.ElementType = () => {
     if (search.length) {
       dispatch(fetchSearchMeals(search));
     } else {
-      dispatch(fetchMealsByCategory(DEFAULT_CATEGORY));
+      dispatch(resetRecipes());
+      state.currentCategories.forEach((category) =>
+        dispatch(fetchMealsByCategory(DEFAULT_CATEGORY)),
+      );
     }
     setState({ ...state, search });
   };

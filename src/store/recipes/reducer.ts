@@ -61,6 +61,9 @@ const recipesSlice = createSlice({
         ({ strCategory }) => strCategory !== action.payload,
       );
     },
+    resetRecipes(state) {
+      state.recipes = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMealsByCategory.fulfilled, (state, action) => {
@@ -117,6 +120,7 @@ const recipesSlice = createSlice({
 });
 
 const { actions, reducer } = recipesSlice;
-export const { toggleFavoriteItem, addRecipe, filterCategory } = actions;
+export const { toggleFavoriteItem, addRecipe, filterCategory, resetRecipes } =
+  actions;
 
 export default reducer;
