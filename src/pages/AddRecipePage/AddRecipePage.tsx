@@ -49,7 +49,12 @@ export const AddRecipePage: React.ElementType = () => {
   });
   const dispatch = useAppDispatch();
   const categories: Category[] = useAppSelector((state) => state.categories);
-
+  const isValidForm =
+    !!state.name &&
+    !!state.category &&
+    !!state.img &&
+    !!state.instructions &&
+    state.ingredients.length;
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -123,13 +128,7 @@ export const AddRecipePage: React.ElementType = () => {
   };
 
   const addNewRecipe: VF = () => {
-    if (
-      !!state.name &&
-      !!state.category &&
-      !!state.img &&
-      !!state.instructions &&
-      state.ingredients.length
-    ) {
+    if (isValidForm) {
       dispatch(addRecipe(state));
       navigate(RECIPE_BOARD_ROUTE);
     }
@@ -249,6 +248,7 @@ export const AddRecipePage: React.ElementType = () => {
                 onClick={addNewRecipe}
                 className={styles.addRecipeButton}
                 data-testid='addRecipeButton'
+                disabled={!isValidForm}
               >
                 Add
               </Button>
