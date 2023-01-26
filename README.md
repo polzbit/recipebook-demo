@@ -8,11 +8,12 @@ all the data is from [TheMealDB](https://www.themealdb.com/api.php) api.
 ### Demo
 
 You can check demo of this project, in the following link:
-[RecipeBook Demo](https://polzbit.github.io/recipebook-demo/) \
+[RecipeBook Demo](https://polzbit.github.io/recipebook-demo/) 
 
 ## Features
 
 - Recipes from [TheMealDB](https://www.themealdb.com/api.php) api.
+- Style using MUI and Sass.
 - State management using Redux store.
 - Unit testing using Jest.
 
