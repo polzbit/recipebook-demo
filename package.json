@@ -2,7 +2,7 @@
   "name": "recipebook-demo",
   "version": "0.1.0",
   "private": true,
-  "homepage ": "https://polzbit.github.io/recipebook-demo/",
+  "homepage ": "https://polzbit.github.io/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
