@@ -41,6 +41,7 @@ export const HomePage: React.ElementType = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(resetRecipes());
     dispatch(fetchCategories());
     dispatch(fetchMealsByCategory(DEFAULT_CATEGORY));
   }, [dispatch]);
