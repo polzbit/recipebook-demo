@@ -82,9 +82,9 @@ export const HomePage: React.ElementType = () => {
       dispatch(fetchSearchMeals(search));
     } else {
       dispatch(resetRecipes());
-      state.currentCategories.forEach((category) =>
-        dispatch(fetchMealsByCategory(DEFAULT_CATEGORY)),
-      );
+      for (const category of state.currentCategories) {
+        dispatch(fetchMealsByCategory(category));
+      }
     }
     setState({ ...state, search });
   };
