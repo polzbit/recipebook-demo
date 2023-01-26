@@ -1,0 +1,17 @@
+@import '../../style/mainStyle.scss';
+
+.home {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 150px 10px;
+  .recipeBoardTitle {
+    h1 {
+      font-weight: 500;
+    }
+  }
+  .recipeBoardTab {
+    text-transform: none;
+  }
+}

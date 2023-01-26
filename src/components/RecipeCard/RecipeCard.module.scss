@@ -1,0 +1,29 @@
+@import '../../style/mainStyle.scss';
+
+.recipeCard {
+  .recipeCardTitle {
+    display: inline-block;
+    font-size: $LargeFontSize;
+    height: 45px;
+  }
+  .cardContent {
+    padding: 5px 16px;
+    height: 130px;
+  }
+  .recipeCardInstructions {
+    font-size: $SmallFontSize;
+  }
+  .favoriteButton {
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  .readMoreButton {
+    text-transform: none;
+    background-color: $PrimaryColor;
+    &:hover {
+      background-color: $PrimaryHoverColor;
+    }
+  }
+}

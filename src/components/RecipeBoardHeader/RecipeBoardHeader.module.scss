@@ -1,0 +1,14 @@
+@import '../../style/mainStyle.scss';
+
+.recipeBoardHeader {
+  .addRecipeButton {
+    text-transform: none;
+    background-color: $PrimaryColor;
+    &:hover {
+      background-color: $PrimaryHoverColor;
+    }
+  }
+  .selectPlaceholder {
+    color: rgb(172, 172, 172);
+  }
+}

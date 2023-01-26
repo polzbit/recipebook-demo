@@ -1,0 +1,32 @@
+@import '../../style/mainStyle.scss';
+
+.addRecipePage {
+  padding: 10px 200px;
+  .backButton {
+    color: rgb(0, 0, 0);
+    text-transform: none;
+  }
+  .addRecipeTitle {
+    margin: 60px 0;
+    font-weight: 500;
+  }
+  .ingredientsForm {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    button {
+      margin-left: 15px;
+      background-color: $PrimaryColor;
+      &:hover {
+        background-color: $PrimaryHoverColor;
+      }
+    }
+  }
+  .addRecipeButton {
+    text-transform: none;
+    background-color: $PrimaryColor;
+    &:hover {
+      background-color: $PrimaryHoverColor;
+    }
+  }
+}

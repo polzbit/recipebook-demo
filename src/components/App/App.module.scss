@@ -1,0 +1,10 @@
+.app {
+  font-family: Tahoma, sans-serif;
+  height: 100vh;
+  .page {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
