@@ -30,14 +30,17 @@ const handlers = [
       return res(ctx.json({ meals: mockMeals }), ctx.delay(150));
     },
   ),
-  rest.get(MEALS_DB_ROUTES.GET_CATEGORIES, (req, res, ctx) => {
-    return res(
-      ctx.json({
-        meals: mockCategories,
-      }),
-      ctx.delay(150),
-    );
-  }),
+  rest.get(
+    MEALS_DB_ROUTES.GET_CATEGORIES.replace('?c=list', ''),
+    (req, res, ctx) => {
+      return res(
+        ctx.json({
+          meals: mockCategories,
+        }),
+        ctx.delay(150),
+      );
+    },
+  ),
 ];
 
 describe('AddRecipePage test suite', () => {

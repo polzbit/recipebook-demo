@@ -28,11 +28,14 @@ const handlers = [
       return res(ctx.json({ meals: mockMeals }), ctx.delay(150));
     },
   ),
-  rest.get(MEALS_DB_ROUTES.GET_CATEGORIES, (req, res, ctx) => {
-    return res(ctx.json({ meals: mockCategories }), ctx.delay(150));
-  }),
   rest.get(
-    MEALS_DB_ROUTES.SEARCH_MEAL_BY_NAME.replace('?s=:search', ''),
+    MEALS_DB_ROUTES.GET_CATEGORIES.replace('?c=list', ''),
+    (req, res, ctx) => {
+      return res(ctx.json({ meals: mockCategories }), ctx.delay(150));
+    },
+  ),
+  rest.get(
+    MEALS_DB_ROUTES.SEARCH_MEAL_BY_NAME.replace('?s=:name', ''),
     (req, res, ctx) => {
       return res(ctx.json({ meals: mockMeals }), ctx.delay(150));
     },
