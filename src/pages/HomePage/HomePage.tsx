@@ -17,7 +17,11 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { Category, Meal, VF } from '../../utils/types';
 import { SelectChangeEvent } from '@mui/material';
 import { RecipeDrawer } from '../../components/RecipeDrawer';
-import { filterCategory, resetRecipes } from '../../store/recipes/reducer';
+import {
+  filterCategory,
+  resetRecipes,
+  resetSearch,
+} from '../../store/recipes/reducer';
 
 export interface HomePageState {
   search: string;
@@ -58,7 +62,9 @@ export const HomePage: React.ElementType = () => {
 
   const handleCategoryChange = (event: SelectChangeEvent<unknown>) => {
     const currentCategories = event.target.value as string[];
-    if (currentCategories.length > state.currentCategories.length) {
+    if (state.search) {
+      resetRecipeSearch(currentCategories);
+    } else if (currentCategories.length > state.currentCategories.length) {
       dispatch(
         fetchMealsByCategory(currentCategories[currentCategories.length - 1]),
       );
@@ -66,9 +72,6 @@ export const HomePage: React.ElementType = () => {
       const currentCategory = state.currentCategories.find(
         (category) => !currentCategories.includes(category),
       );
-      if (state.search) {
-        resetSearch(currentCategories);
-      }
       dispatch(filterCategory(currentCategory));
     }
     setState({
@@ -85,16 +88,17 @@ export const HomePage: React.ElementType = () => {
     if (search.length) {
       dispatch(fetchSearchMeals(search));
     } else {
-      resetSearch(state.currentCategories);
+      resetRecipeSearch(state.currentCategories);
     }
     setState({ ...state, search });
   };
 
-  const resetSearch = (categories: string[]) => {
+  const resetRecipeSearch = (categories: string[]) => {
     dispatch(resetRecipes());
     for (const category of categories) {
       dispatch(fetchMealsByCategory(category));
     }
+    dispatch(resetSearch());
   };
   const closeDrawer = () => {
     setState({ ...state, currentRecipe: undefined });

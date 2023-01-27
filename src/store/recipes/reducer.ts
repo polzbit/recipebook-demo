@@ -10,6 +10,7 @@ export interface RecipeState {
   recipes: Meal[];
   favoriteRecipes: Meal[];
   userRecipes: Meal[];
+  searchRecipesIds: string[];
   categories: Category[];
   loading: boolean;
 }
@@ -18,6 +19,7 @@ const initialState: RecipeState = {
   recipes: [],
   favoriteRecipes: [],
   userRecipes: [],
+  searchRecipesIds: [],
   categories: [],
   loading: false,
 };
@@ -64,6 +66,9 @@ const recipesSlice = createSlice({
     resetRecipes(state) {
       state.recipes = [];
     },
+    resetSearch(state) {
+      state.searchRecipesIds = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMealsByCategory.fulfilled, (state, action) => {
@@ -75,7 +80,9 @@ const recipesSlice = createSlice({
         );
         state.recipes = [
           ...state.recipes.filter(
-            ({ strCategory }) => strCategory !== category,
+            ({ strCategory, idMeal }) =>
+              strCategory !== category ||
+              !state.searchRecipesIds.includes(idMeal),
           ),
           ...action.payload,
           ...userRecipesByCategory,
@@ -109,6 +116,7 @@ const recipesSlice = createSlice({
       } else {
         state.recipes = userRecipesByCategory;
       }
+      state.searchRecipesIds = action.payload?.map((meal: Meal) => meal.idMeal);
     });
     builder.addCase(fetchSearchMeals.pending, (state, action) => {
       state.loading = true;
@@ -120,7 +128,12 @@ const recipesSlice = createSlice({
 });
 
 const { actions, reducer } = recipesSlice;
-export const { toggleFavoriteItem, addRecipe, filterCategory, resetRecipes } =
-  actions;
+export const {
+  toggleFavoriteItem,
+  addRecipe,
+  filterCategory,
+  resetRecipes,
+  resetSearch,
+} = actions;
 
 export default reducer;
