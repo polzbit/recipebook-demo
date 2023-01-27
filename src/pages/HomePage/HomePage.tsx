@@ -14,7 +14,7 @@ import {
   fetchSearchMeals,
 } from '../../store/recipes/actions';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { Category, Meal } from '../../utils/types';
+import { Category, Meal, VF } from '../../utils/types';
 import { SelectChangeEvent } from '@mui/material';
 import { RecipeDrawer } from '../../components/RecipeDrawer';
 import { filterCategory, resetRecipes } from '../../store/recipes/reducer';
@@ -66,6 +66,9 @@ export const HomePage: React.ElementType = () => {
       const currentCategory = state.currentCategories.find(
         (category) => !currentCategories.includes(category),
       );
+      if (state.search) {
+        resetSearch(currentCategories);
+      }
       dispatch(filterCategory(currentCategory));
     }
     setState({
@@ -82,14 +85,17 @@ export const HomePage: React.ElementType = () => {
     if (search.length) {
       dispatch(fetchSearchMeals(search));
     } else {
-      dispatch(resetRecipes());
-      for (const category of state.currentCategories) {
-        dispatch(fetchMealsByCategory(category));
-      }
+      resetSearch(state.currentCategories);
     }
     setState({ ...state, search });
   };
 
+  const resetSearch = (categories: string[]) => {
+    dispatch(resetRecipes());
+    for (const category of categories) {
+      dispatch(fetchMealsByCategory(category));
+    }
+  };
   const closeDrawer = () => {
     setState({ ...state, currentRecipe: undefined });
   };
