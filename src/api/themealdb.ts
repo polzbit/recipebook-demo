@@ -1,3 +1,5 @@
+import { Meal } from '../utils/types';
+
 const MEAL_DB_URL = 'https://www.themealdb.com/api/json/v1/1';
 
 export const MEALS_DB_ROUTES = {
@@ -44,7 +46,7 @@ export const getMealsByName = (name: string) => {
   });
 };
 
-export const searchMeal = async (meal: string) => {
+export const searchMealAPI = async (meal: string) => {
   try {
     const response = await getMealsByName(meal);
     if (response.status === 200) {
@@ -56,7 +58,7 @@ export const searchMeal = async (meal: string) => {
   }
 };
 
-export const getCategories = async () => {
+export const getCategoriesAPI = async () => {
   try {
     const response = await getMealCategories();
     if (response.status === 200) {
@@ -68,25 +70,22 @@ export const getCategories = async () => {
   }
 };
 
-export const getMealsByCategory = async (category: string) => {
+export const getMealsByCategoryAPI = async (category: string) => {
   try {
     const mealsIdsResponse = await getMealsIdsByCategory(category);
     if (mealsIdsResponse.status === 200) {
       const mealsIds = await mealsIdsResponse.json();
       const { meals } = mealsIds;
-      return meals
-        ?.map(async (meal: any) => {
-          const { idMeal } = meal;
-          const mealResponse = await getMealById(idMeal);
-          if (mealResponse.status === 200) {
-            const { meals: mealData } = await mealResponse.json();
-            return {
-              ...mealData[0],
-            };
+      const mealsData = await Promise.all(
+        meals.map(async (meal: Meal) => {
+          const mealsResponse = await getMealById(meal.idMeal);
+          if (mealsResponse.status === 200) {
+            const { meals: mealData } = await mealsResponse.json();
+            return mealData[0];
           }
-          return null;
-        })
-        .filter((meal: any) => !!meal);
+        }),
+      );
+      return mealsData.filter((meal: Meal) => !!meal);
     }
     throw new Error('[!] Meals DB currently not available.');
   } catch (error) {

@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  getMealsByCategory,
-  getCategories,
-  searchMeal,
+  getMealsByCategoryAPI,
+  getCategoriesAPI,
+  searchMealAPI,
 } from '../../api/themealdb';
 
 export const fetchCategories = createAsyncThunk(
   'recipes/fetchCategories',
   async () => {
-    const payload = await getCategories();
+    const payload = await getCategoriesAPI();
     const { meals } = payload;
     return meals;
   },
@@ -17,7 +17,7 @@ export const fetchCategories = createAsyncThunk(
 export const fetchMealsByCategory = createAsyncThunk(
   'recipes/fetchMealsByCategory',
   async (category: string) => {
-    const payload = await getMealsByCategory(category);
+    const payload = await getMealsByCategoryAPI(category);
     return await Promise.all(payload);
   },
 );
@@ -25,7 +25,7 @@ export const fetchMealsByCategory = createAsyncThunk(
 export const fetchSearchMeals = createAsyncThunk(
   'recipes/fetchSearchMeals',
   async (char: string) => {
-    const payload = await searchMeal(char);
+    const payload = await searchMealAPI(char);
     const { meals } = payload;
     return meals;
   },
