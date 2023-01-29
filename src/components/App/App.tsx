@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { HomePage, AddRecipePage } from '../../pages';
 import { ADD_RECIPE_ROUTE, RECIPE_BOARD_ROUTE } from '../../utils/routes';
