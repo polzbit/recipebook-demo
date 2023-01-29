@@ -1,6 +1,9 @@
+@import '../../style/mainStyle.scss';
+
 .recipeInfo {
   padding: 0 15px;
   border-bottom-left-radius: 50%;
+  width: 600px;
   .recipeHeader,
   .recipeCategory,
   .recipeSubTitle {
@@ -14,5 +17,15 @@
   }
   .instructions {
     margin: 5px 0;
+  }
+}
+
+@media (max-width: $SM) {
+  .recipeInfo {
+    width: 350px;
+    .mealThumb {
+      height: 120px;
+      width: 120px;
+    }
   }
 }

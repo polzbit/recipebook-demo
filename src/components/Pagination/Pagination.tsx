@@ -27,12 +27,12 @@ export const Pagination: FC<PaginationProps> = (props) => {
       alignItems='center'
       justifyContent='flex-end'
     >
-      <Grid item xs={1.5}>
+      <Grid item lg={1.5} md={2} sm={3} xs={5}>
         <span>{`${first} - ${
           last > numOfItems ? numOfItems : last
         } of ${numOfItems}`}</span>
       </Grid>
-      <Grid item xs={0.5}>
+      <Grid item md={0.5} sm={1.5} xs={2.5}>
         <IconButton
           onClick={handlePrevClick}
           disabled={page < 2}
@@ -41,7 +41,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
           <NavigateBefore />
         </IconButton>
       </Grid>
-      <Grid item xs={0.5}>
+      <Grid item md={0.5} sm={1.5} xs={2.5}>
         <IconButton
           onClick={handleNextClick}
           disabled={last > numOfItems}

@@ -50,7 +50,7 @@ export const RecipeDrawer: FC<RecipeDrawerProps> = (props) => {
   return (
     <SwipeableDrawer
       data-testid='recipeDrawer'
-      anchor={'right'}
+      anchor='right'
       open={!!recipe}
       onClose={handleCloseDrawer}
       onOpen={() => null}
@@ -62,7 +62,7 @@ export const RecipeDrawer: FC<RecipeDrawerProps> = (props) => {
         },
       }}
     >
-      <Box sx={{ width: 600 }} className={styles.recipeInfo}>
+      <Box className={styles.recipeInfo}>
         <Grid container alignItems='flex-start' spacing={0}>
           <Grid item xs={12}>
             <IconButton

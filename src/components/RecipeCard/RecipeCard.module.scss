@@ -8,7 +8,7 @@
   }
   .cardContent {
     padding: 5px 16px;
-    height: 130px;
+    height: 150px;
   }
   .recipeCardInstructions {
     font-size: $SmallFontSize;
@@ -24,6 +24,25 @@
     background-color: $PrimaryColor;
     &:hover {
       background-color: $PrimaryHoverColor;
+    }
+  }
+}
+
+@media (max-width: $MD) {
+  .recipeCard {
+    .cardContent {
+      padding: 5px;
+      height: 170px;
+    }
+  }
+}
+
+@media (max-width: $SM) {
+  .recipeCard {
+    .cardContent {
+      padding: 5px;
+      min-height: 180px;
+      height: fit-content;
     }
   }
 }

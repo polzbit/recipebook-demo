@@ -152,7 +152,7 @@ export const AddRecipePage: React.ElementType = () => {
         </Button>
       </Grid>
       <Grid item xs={12}>
-        <Grid container sx={{ p: '0 60px' }} alignItems='flex-start'>
+        <Grid container alignItems='flex-start'>
           <Grid item xs={12}>
             <h1 className={styles.addRecipeTitle}>Add Recipe</h1>
           </Grid>

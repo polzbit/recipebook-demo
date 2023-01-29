@@ -15,3 +15,9 @@
     text-transform: none;
   }
 }
+
+@media (max-width: $SM) {
+  .home {
+    padding: 0 25px 10px;
+  }
+}

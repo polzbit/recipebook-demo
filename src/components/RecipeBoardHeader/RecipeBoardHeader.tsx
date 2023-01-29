@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import {
-  Button,
   Grid,
+  Button,
   Select,
+  Tooltip,
   MenuItem,
   TextField,
   FormControl,
@@ -34,6 +35,7 @@ export const RecipeBoardHeader: FC<RecipeBoardHeaderProps> = (props) => {
     handleSearchChange,
     handleCategoryChange,
   } = props;
+  const currentCategoriesStr = currentCategories.join(', ');
   return (
     <Grid
       container
@@ -43,7 +45,7 @@ export const RecipeBoardHeader: FC<RecipeBoardHeaderProps> = (props) => {
       justifyContent='flex-start'
       spacing={2}
     >
-      <Grid item xs={3.5}>
+      <Grid item sm={3.5} xs={4}>
         <FormControl sx={{ width: '100%' }} size='small'>
           <Select
             multiple
@@ -55,7 +57,13 @@ export const RecipeBoardHeader: FC<RecipeBoardHeaderProps> = (props) => {
             IconComponent={KeyboardArrowDown}
             onChange={handleCategoryChange}
             renderValue={() => (
-              <span className={styles.selectPlaceholder}>Pick a category</span>
+              <Tooltip title={currentCategoriesStr} placement='top'>
+                <span className={styles.selectPlaceholder}>
+                  {currentCategories.length
+                    ? currentCategoriesStr
+                    : 'Pick a category'}
+                </span>
+              </Tooltip>
             )}
           >
             <MenuItem disabled value=''>
@@ -69,7 +77,7 @@ export const RecipeBoardHeader: FC<RecipeBoardHeaderProps> = (props) => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={3.5}>
+      <Grid item sm={3.5} xs={5}>
         <FormControl sx={{ width: '100%' }}>
           <TextField
             value={search}
@@ -92,7 +100,7 @@ export const RecipeBoardHeader: FC<RecipeBoardHeaderProps> = (props) => {
           />
         </FormControl>
       </Grid>
-      <Grid item sx={{ ml: 'auto' }}>
+      <Grid item xs={1.5} sx={{ ml: 'auto', mr: '20px' }}>
         <Button
           variant='contained'
           onClick={handleAddRecipe}

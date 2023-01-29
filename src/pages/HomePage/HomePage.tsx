@@ -52,7 +52,7 @@ export const HomePage: React.ElementType = () => {
 
   const navigate = useNavigate();
 
-  const handleAddRecipe = () => {
+  const handleAddRecipe: VF = () => {
     navigate(ADD_RECIPE_ROUTE);
   };
 
@@ -100,7 +100,7 @@ export const HomePage: React.ElementType = () => {
     }
     dispatch(resetSearch());
   };
-  const closeDrawer = () => {
+  const closeDrawer: VF = () => {
     setState({ ...state, currentRecipe: undefined });
   };
 

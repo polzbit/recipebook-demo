@@ -31,7 +31,7 @@ export const RecipeBoard: FC<RecipeBoardProps> = (props) => {
       spacing={2}
     >
       {recipesToRender.map((recipe, index) => (
-        <Grid key={index} item xs={2.4}>
+        <Grid key={index} item lg={2.4} md={3} sm={4} xs={6}>
           <RecipeCard recipe={recipe} handleShowRecipe={handleShowRecipe} />
         </Grid>
       ))}

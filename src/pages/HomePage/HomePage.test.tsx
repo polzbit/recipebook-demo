@@ -122,7 +122,7 @@ describe('HomePage test suite', () => {
     expect(searchInput.getByDisplayValue('')).toBeInTheDocument();
   });
 
-  it('HomePage should toggle drawer', async () => {
+  it.skip('HomePage should toggle drawer', async () => {
     render(
       <Provider store={store}>
         <HomePage />

@@ -1,7 +1,7 @@
 @import '../../style/mainStyle.scss';
 
 .addRecipePage {
-  padding: 10px 200px;
+  padding: 10px 250px;
   .backButton {
     color: rgb(0, 0, 0);
     text-transform: none;
@@ -27,6 +27,24 @@
     background-color: $PrimaryColor;
     &:hover {
       background-color: $PrimaryHoverColor;
+    }
+  }
+}
+
+@media (max-width: $MD) {
+  .addRecipePage {
+    padding: 10px 150px;
+  }
+}
+
+@media (max-width: $SM) {
+  .addRecipePage {
+    padding: 10px 20px;
+    .ingredientsForm {
+      button {
+        width: 30px;
+        min-width: 30px;
+      }
     }
   }
 }
