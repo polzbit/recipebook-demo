@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './components/App';
@@ -7,7 +7,7 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 const router = createHashRouter([
   {
-    path: '/*',
+    path: '/recipebook-demo/*',
     element: <App />,
   },
 ]);
