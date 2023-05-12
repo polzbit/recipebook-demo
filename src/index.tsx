@@ -3,21 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './components/App';
 import reportWebVitals from './reportWebVitals';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
-
-const router = createHashRouter([
-  {
-    path: '/recipebook-demo/*',
-    element: <App />,
-  },
-]);
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter basename='/recipebook-demo'>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
 );
 
